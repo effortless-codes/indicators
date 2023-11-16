@@ -53,9 +53,9 @@ class NotifyConfig
      */
     public function indicator(string $title = '', string $text = '', bool $isToast = false): static
     {
-        $type = 'alert';
+        $mode = 'alert';
         if ($isToast) {
-            $type = 'toast';
+            $mode = 'toast';
         }
 
         $data = [
@@ -78,9 +78,50 @@ class NotifyConfig
 
         $this->config = $data;
 
-        $this->config['type'] = $type;
+        $this->config['mode'] = $mode;
         $this->config['title'] = $title;
         $this->config['text'] = $text;
+        $this->config['type'] = 'success';
+        $this->flash();
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function success(): static
+    {
+        $this->config['type'] = 'success';
+        $this->flash();
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function info(): static
+    {
+        $this->config['type'] = 'info';
+        $this->flash();
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function warning(): static
+    {
+        $this->config['type'] = 'warning';
+        $this->flash();
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function error(): static
+    {
+        $this->config['type'] = 'error';
         $this->flash();
         return $this;
     }
